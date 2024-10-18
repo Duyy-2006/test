@@ -1,4 +1,4 @@
-local candy = 3231
+local candy = 3000
 print('Starts')
 abc = game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Halloween2024.Container.EventFrames.FinalReward.Info.Tokens.Container.TextLabel.Text
 local currency = tonumber(abc)
