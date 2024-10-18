@@ -1,3 +1,8 @@
+local candy = 3231
+print('Starts')
+abc = game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Halloween2024.Container.EventFrames.FinalReward.Info.Tokens.Container.TextLabel.Text
+local currency = tonumber(abc)
+local only_numbers = abc:gsub("%D", "")
 function Savetxtconfig(log)
     if not ValueFileReady then
         ValueFileReady = 0
@@ -30,21 +35,10 @@ function Savetxtconfig(log)
         print("writefile function không khả dụng.")
     end
 end
-
-local function checkCandy()
-    local player = game:GetService("Players").LocalPlayer
-    local tokensText = player.PlayerGui.CrossPlatform.Halloween2024.Container.EventFrames.FinalReward.Info.Tokens.Container.TextLabel.Text
-    local tokens = tonumber(tokensText)
-
-    if tokens and tokens >= Candylimit then
-        Savetxtconfig(log)
-    end
+if tonumber(only_numbers) >= candy
+then
+    print("du")
+    Savetxtconfig(log)
+else
+    print("Ko du")
 end
-
-checkCandy()
-
-spawn(function()
-    while wait(5) do
-        checkCandy()
-    end
-end)
