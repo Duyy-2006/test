@@ -1,0 +1,50 @@
+function Savetxtconfig(log)
+    if not ValueFileReady then
+        ValueFileReady = 0
+    end
+    if not log then
+        log = 'Yummytool'
+    end
+    
+    local filename = game.Players.LocalPlayer.Name .. ".txt"
+    
+    if writefile then
+        if not isfile(filename) then
+            print('Kiểm Tra WriteFile')
+        end
+        if isfile(filename) then
+            if ValueFileReady == 1 then
+                return
+            end
+            ValueFileReady = 1
+            print('File Đã Có Trong Workspace')
+        else
+            if ValueFileReady == 1 then
+                return
+            end
+            ValueFileReady = 1
+            writefile(filename, log)
+            print('File đã được tạo và lưu với nội dung:', log)
+        end
+    else
+        print("writefile function không khả dụng.")
+    end
+end
+
+local function checkCandy()
+    local player = game:GetService("Players").LocalPlayer
+    local tokensText = player.PlayerGui.CrossPlatform.Halloween2024.Container.EventFrames.FinalReward.Info.Tokens.Container.TextLabel.Text
+    local tokens = tonumber(tokensText)
+
+    if tokens and tokens >= Candylimit then
+        Savetxtconfig(log)
+    end
+end
+
+checkCandy()
+
+spawn(function()
+    while wait(5) do
+        checkCandy()
+    end
+end)
